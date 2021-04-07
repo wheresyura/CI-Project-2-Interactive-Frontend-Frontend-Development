@@ -1,78 +1,144 @@
-var apikey = {
-    key:'5dff8033-57d4-4bb9-9ae9-e11b219d9217'
+//used from code institute's example from online vidoes
+const baseURL = "https://api.coingecko.com/api/v3/exchanges/binance/tickers";
+
+function getData(cb) {
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            cb(JSON.parse(this.responseText));
+        }
+    };
+
+    xhr.open("GET", baseURL);
+    xhr.send();
 }
 
-/*
-const xhr = new XMLHttpRequest();
-const url = 'https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest?CMC_PRO_API_KEY=' + apikey.key;
+function getTableHeaders(obj) {
+    let tableHeaders = [];
 
-function someHandler(data) {
+     Object.keys(obj).forEach(function(key){
+        tableHeaders.push(`<td> ${key} </td>`);
+     });
+    return `<tr>${tableHeaders}</tr>`;
+};
+
+
+
+function writeToDocument() {
+    let tableRows = [];
+
+    //clears the text
+    let el = document.getElementById('test');
+    el.innerHTML = "";
+    
+
+    getData(function(data) {
+        data = data.tickers;
+        let tableHeaders = getTableHeaders(data[0]);
+
+        data.forEach(function(item) {
+            let dataRow = [];
+
+            Object.keys(item).forEach(function(key){
+                let rowData = item[key].toString();
+                let trauncatedData = rowData.substring(0,15)
+                dataRow.push(`<td>${trauncatedData}</td>`)
+            });
+            tableRows.push(`<tr>${dataRow}</tr>`);
+        });
+        el.innerHTML = `<table> ${tableHeaders}${tableRows} </table>`
+    });
+}
+
+
+/* 
+//2. WORKING CODE DISPLAYS THE KEYS OF EACH OF OBJECT FROM JSON
+const baseURL = "https://api.coingecko.com/api/v3/exchanges/binance/tickers";
+
+function getData(cb) {
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            cb(JSON.parse(this.responseText));
+        }
+    };
+
+    xhr.open("GET", baseURL);
+    xhr.send();
+}
+
+function getTableHeaders(obj) {
+    let tableHeaders = [];
+
+     Object.keys(obj).forEach(function(key){
+        tableHeaders.push(`<td> ${key} </td>`);
+     });
+    return `<tr>${tableHeaders}</tr>`;
+};
+
+
+
+function writeToDocument() {
+    //clears the text
+    let el = document.getElementById('test');
+    el.innerHTML = "";
+    
+
+    getData(function(data) {
+        data = data.tickers;
+        let tableHeaders = getTableHeaders(data[0]);
+
+        data.forEach(function(item) {
+            //el.innerHTML += "<p>" + item.base + "<p>";
+        })
+        el.innerHTML = `<table> ${tableHeaders} </table>`
+    });
+}
+*/
+
+
+/*
+//1. WORKING CODE - PRINTS TO CONSOLE (OUR JSON DATA AS AN OBJECT)
+function getData(cb) {
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("GET", "https://api.coingecko.com/api/v3/exchanges/binance/tickers");
+    xhr.send();
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            cb(JSON.parse(this.responseText));
+        }
+    };
+}
+
+function printDataToConsole(data) {
     console.log(data);
 }
 
-xhr.open('GET', url);
-xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-xhr.setRequestHeader('Content-Type', 'text/plain')
-xhr.onreadystatechange = someHandler;
-xhr.send();
+getData(printDataToConsole);
+
 */
 
 
-
-fetch('https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest?CMC_PRO_API_KEY=' + apikey.key, { 
-        method: 'GET',
-        mode: 'no-cors',
-        credentials: 'omit',
-        cache: 'no-cache',
-        headers: {
-            'Content-Type': 'text/plain',
-            //'Accept': 'application/x-www-form-urlencoded',
-            'Access-Control-Allow-Origin': '*'
-        }
-    })
-    .then(data => console.log(data))
-    .catch(err => console.log(err));
-
-
-
 /*
-async function asyncCall() {
+const baseURL = "https://api.coingecko.com/api/v3/exchanges/binance/tickers";
 
-    let response = await fetch('https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest?CMC_PRO_API_KEY=' + apikey.key, { 
-        method: 'GET',
-        mode: 'no-cors',
-        headers: {
-            'Content-Type': 'text/plain',
-            'Access-Control-Allow-Origin': 'https://pro-api.coinmarketcap.com'
+function getData(type, cb) {
+    //what does the new mean and XMLH...request?
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("GET", baseURL  + "/" + type + "/");
+    xhr.send();
+
+//this in this instance mean?
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            cb(JSON.parse(this.responseText));
         }
-    });
-    console.log(response);
-
-    //console.log(JSON.stringify(response));
-    //let x1 = JSON.parse(response.target.responseText);
-   // console.log(x1.data.quote.USD.total_market_cap);
-};
-
-asyncCall();
-*/
-
-/*
-request('GET','https://pro-api.coinmarketcap.com/v1/global-metrics/quotes/latest?CMC_PRO_API_KEY=' + apikey.key)
-.then((r1) => {
-    var x1 = JSON.parse(r1.target.responseText);
-    console.log(x1.data.quote.USD.total_market_cap);
-    document.getElementById('test').innerText = x1.data.quote.USD.total_market_cap;
-}).catch(err => {
-    console.log('err');
-})  
-*/ 
-
-function request(method, url) {
-        return new Promise(function (resolve, reject) {
-            var xhr = new XMLHttpRequest();
-            xhr.open(method, url);
-            xhr.onload = resolve;
-            xhr.onerror = reject;
-            xhr.send();
-        });
+    };
 }
+
+*/
