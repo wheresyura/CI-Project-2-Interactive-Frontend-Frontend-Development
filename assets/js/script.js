@@ -1,8 +1,12 @@
 //used from code institute's example from online vidoes
 const baseURL = "https://api.coingecko.com/api/v3/exchanges/binance/tickers";
 
+
+
+
+//how we are getting the API data 
 function getData(cb) {
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -14,6 +18,7 @@ function getData(cb) {
     xhr.send();
 }
 
+//creating a table?
 function getTableHeaders(obj) {
     let tableHeaders = [];
 
@@ -23,8 +28,18 @@ function getTableHeaders(obj) {
     return `<tr>${tableHeaders}</tr>`;
 };
 
+// function generatePaginationButtons(next, previous) {
+//     if (next && prev) {
+//         return `<button onclick="writeToDocument(${prev})">Previous</button>`
+//                `<button onclick="writeToDocument(${next})">Next</button>`
+//     } else if (next && !prev) {
+//         `<button onclick="writeToDocument(${next})">Next</button>`
+//     } else if (!next && prev) {
+//         `<button onclick="writeToDocument(${prev})">Previous</button>`
+//     }
+// }
 
-
+//or is this creating a table?
 function writeToDocument() {
     let tableRows = [];
 
@@ -32,8 +47,13 @@ function writeToDocument() {
     let el = document.getElementById('test');
     el.innerHTML = "";
     
-
+// anonymous function (the function in the paramater)
     getData(function(data) {
+        // let pagination;
+        // if (data.next || data.previous) {
+        //     pagination = generatePaginationButtons(data.next, data.previous)
+        // }
+
         data = data.tickers;
         let tableHeaders = getTableHeaders(data[0]);
 
@@ -48,6 +68,83 @@ function writeToDocument() {
         el.innerHTML = `<table> ${tableHeaders}${tableRows} </table>`
     });
 }
+
+//Filter ATTEMPT 3
+function filterUSDT(obj) {
+    let USDTCoins = obj.tickers.filter( item => item.target === 'USDT'  );
+    return USDTCoins;
+};
+
+function printUSDT(exch) {
+    console.log( filterUSDT(coins[exch]) );
+}
+
+//console.log(USDTCoins);
+
+
+//Filter ATTEMPT 2
+// Object.filter = function( coins, USDT) {
+//     let USDTCoins = {}, key;
+
+//     for (key in obj) {
+//         if (obj.hasOwnProperty(key) && !USDT(obj[key])) {
+//             USDTCoins[key] = obj[key];
+//         }
+//     }
+
+//     console.log(USDTCoins);
+// };
+
+//filter ATEMPT 1
+// let USDTCoins = coins.binance.filter(coin => coin === 'USDT');
+// console.log(USDTCoins);
+
+
+
+//d
+const exchURL = "https://api.coingecko.com/api/v3/exchanges/";
+let coins = { binance: [], gdax: [] };
+
+function getData2(exch) {
+    let xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            coins[exch] = JSON.parse(this.responseText);
+            arrivedData();
+            printUSDT(exch);
+        }
+    };
+
+    xhr.open("GET", exchURL + exch + '/tickers');
+    xhr.send();
+}
+
+// let arrivedData = function () {} // same as below
+function arrivedData() {
+    let result = '';
+
+    for (const exch in coins) {
+        // if (!exch.hasOwnProperty('tickers')) {
+        //     continue;
+        // }
+
+        let tickers = coins[exch].tickers;
+
+        for (let i in tickers) {
+            result += `<tr><td>${exch}</td> <td>${tickers[i].base}</td> <td>${tickers[i].last}</td></tr>`;
+            //result = result +  // the same
+        }
+    }
+    //console.log(result); 
+
+    let el = document.getElementById('test');
+    el.innerHTML = `<table>${result}</table>`;
+
+}
+
+
+
 /*  
 //3. WORKING DISPLAYING THE DATA CORRECTLY IN A TABLE
 const baseURL = "https://api.coingecko.com/api/v3/exchanges/binance/tickers";
