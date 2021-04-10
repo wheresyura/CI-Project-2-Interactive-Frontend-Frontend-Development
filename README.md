@@ -138,7 +138,7 @@ Testing client stories from UX section of README.md
 
 #### Discovered & Solved Bugs 
 
-1. The background hero text in the centre of the video -  found how you could solve the problem on images and applied it to the video.
+1. The first problem I encountered, was with 'Cross-Origin Resource Sharing (CORS)' when I tried to work with the [Coinmarketcap.com](https://coinmarketcap.com/api/documentation) API. I installed [Moesif CORS changer](https://chrome.google.com/webstore/detail/moesif-origin-cors-change/digfbfaphojjndkpccljibejjbppifbc) to overcome this problem after watching a tutorial but realised that person marking my site will need this too. So went looking for other Crypto API's and came across [Coingecko](https://www.coingecko.com/api/documentations) which I used and solved this problem.
 
 ```python
 
@@ -161,7 +161,7 @@ video {
 ```
 
 
-2. Adding background for the hero text so you can read it easier
+2. Using the setTimeout() function to make sure that filter happens when data arrives to my machine.
 
 ```python
 .hero {
