@@ -18,6 +18,8 @@ function processRequest(exch, url){
     xhr.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             coins[exch] = coins[exch].concat(JSON.parse(this.responseText).tickers);
+
+            localStorage.setItem('coins', JSON.stringify(coins));
             arrivedData();
         }
     };
@@ -65,3 +67,29 @@ function filterUSDT(obj) {
 
 // setTimeout( ()=> filterUSDT(coins['binance']), 5000);
 //console.log(filterUSDT(coins['binance']));
+
+
+
+function refreshTickers(){
+    for (const exch in coins) {
+        getData2(exch);
+      
+    }
+}
+
+
+
+window.onload = function(e) {
+    let saved = localStorage.getItem('coins');
+    if (saved == null) {
+        console.log('requesting data');
+        
+        refreshTickers();
+    }
+    else {
+        console.log('using saved data');
+        coins = JSON.parse(saved);
+
+    }
+};
+
