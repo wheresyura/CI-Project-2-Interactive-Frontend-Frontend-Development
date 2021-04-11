@@ -34,7 +34,7 @@ function processRequest(exch, url){
 
 // let arrivedData = function () {} // same as below
 function displayFilteredData(exch) {
-    let result = '';
+    let result = '<thead><tr><th>Exchange</th><th>Base</th><th>Target</th><th>Last</th><th>Volume</th></tr></thead><tbody>';
     for (const i in filtered) {
         // K - because we made the data into an array rather then a dictionary earlier we removed .tickers (which would have given us this array)
        
@@ -45,7 +45,7 @@ function displayFilteredData(exch) {
     }
     //console.log(result); 
     let el = document.getElementById('data-table');
-    el.innerHTML = `<table class='table table-dark'>${result}</table>`;
+    el.innerHTML = `<table class='table table-dark'>${result}</tbody></table>`;
 }
 
 //Filter 
@@ -106,4 +106,7 @@ window.onload = function(e) {
     filterData();
 
 };
+
+
+
 
