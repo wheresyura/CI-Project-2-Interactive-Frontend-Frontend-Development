@@ -45,7 +45,7 @@ function displayFilteredData(exch) {
     }
     //console.log(result); 
     let el = document.getElementById('data-table');
-    el.innerHTML = `<table class='table table-dark'>${result}</tbody></table>`;
+    el.innerHTML = ` <div class="container"><table class='table table-dark table-striped table-bordered nowrap' id='coins-table'>${result}</tbody><tfoot><tr><th>Exchange</th><th>Base</th><th>Target</th><th>Last</th><th>Volume</th></tr></thead><tfoot></table></div>`;
 }
 
 //Filter 
@@ -86,7 +86,20 @@ function filterData() {
 
     displayFilteredData(exchange);
 
+    //setTimeout(()=> { $('#coins-table').DataTable({ responsive: true }); }, 1);
 
+    $('#coins-table').DataTable({ responsive: true });
+
+
+
+
+    // $(document).ready(function() {
+    //         var table = $('#example').DataTable( {
+    //             responsive: true
+    //         } );
+        
+    //         new $.fn.dataTable.FixedHeader( table );
+    //     } );
 
 
 
