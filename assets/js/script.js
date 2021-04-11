@@ -23,7 +23,7 @@ function processRequest(exch, url){
         if (this.readyState == 4 && this.status == 200) {
             coins[exch] = coins[exch].concat(JSON.parse(this.responseText).tickers);
 
-            localStorage.setItem('coins', JSON.stringify(coins));
+            sessionStorage.setItem('coins', JSON.stringify(coins));
             arrivedData();
         }
     };
@@ -86,28 +86,13 @@ function filterData() {
 
     displayFilteredData(exchange);
 
-    //setTimeout(()=> { $('#coins-table').DataTable({ responsive: true }); }, 1);
-
+ 
     $('#coins-table').DataTable({ responsive: true });
-
-
-
-
-    // $(document).ready(function() {
-    //         var table = $('#example').DataTable( {
-    //             responsive: true
-    //         } );
-        
-    //         new $.fn.dataTable.FixedHeader( table );
-    //     } );
-
-
-
 
 };
 
 window.onload = function(e) {
-    let saved = localStorage.getItem('coins');
+    let saved = sessionStorage.getItem('coins');
     if (saved == null) {
         console.log('requesting data');
         refreshTickers();
