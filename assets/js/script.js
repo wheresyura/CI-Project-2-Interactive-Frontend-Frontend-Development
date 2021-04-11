@@ -34,18 +34,18 @@ function processRequest(exch, url){
 
 // let arrivedData = function () {} // same as below
 function displayFilteredData(exch) {
-    let result = '<thead><tr><th>Exchange</th><th>Base</th><th>Target</th><th>Last</th><th>Volume</th></tr></thead><tbody>';
+    let result = '<thead><tr><th>Exchange</th><th>Base</th><th>Target</th><th>Last</th><th>Volume</th><th>Volume*Price</th></tr></thead><tbody>';
     for (const i in filtered) {
         // K - because we made the data into an array rather then a dictionary earlier we removed .tickers (which would have given us this array)
        
         
-            result += `<tr><td>${exch}</td> <td>${filtered[i].base}</td> <td>${filtered[i].target}</td><td>${filtered[i].last}</td><td>${filtered[i].volume}</td></tr>`;
+            result += `<tr><td>${exch}</td> <td>${filtered[i].base}</td> <td>${filtered[i].target}</td><td>${filtered[i].last}</td><td>${filtered[i].volume}</td><td>${filtered[i].volume*filtered[i].last}</td></tr>`;
             //result = result +  // the same
        
     }
     //console.log(result); 
     let el = document.getElementById('data-table');
-    el.innerHTML = ` <div class="container"><table class='table table-dark table-striped table-bordered nowrap' id='coins-table'>${result}</tbody><tfoot><tr><th>Exchange</th><th>Base</th><th>Target</th><th>Last</th><th>Volume</th></tr></thead><tfoot></table></div>`;
+    el.innerHTML = ` <div class="container"><table class='table table-dark table-striped table-bordered nowrap' id='coins-table'>${result}</tbody></table></div>`;
 }
 
 //Filter 

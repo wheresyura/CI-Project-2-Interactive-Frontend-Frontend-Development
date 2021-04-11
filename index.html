@@ -22,19 +22,12 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
    <a class="navbar-brand" href="#">
-      <img src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-      Bootstrap
+      <img src="assets/images/hotcoin.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+      Hotcoins
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" href="#">Binance</a>
-        <a class="nav-link" href="#">Coinbase</a>
-        <a class="nav-link" href="#">HotBit</a>
-      </div>
-    </div>
   </div>
 </nav>
     </header>
@@ -48,7 +41,7 @@
 -->
 
 
-<div class="main-navigation"> 
+<div class="main-navigation container"> 
     <label for="exchange">Choose your crypto exchange:</label>
     <select id="exchange" class="form-select" aria-label="Default select example"       onchange="filterData()">
         <option value="binance" selected>Binance</option>
@@ -56,24 +49,24 @@
         <option value="kraken">Kraken</option>
         <option value="hotbit">HotBit</option>
     </select>
-
+    <br>
     <label for="currency">Choose your target coin for comparisson:</label>
       <select id="currency" class="form-select" aria-label="Default select example"
       onchange="filterData()">
         <option value="USDT" selected>USDT</option>
         <option value="BTC">BTC</option>
     </select>
-
-      <select class="form-select" aria-label="Default select example">
-        <option selected>Choose your desired price range</option>
-        <option value="1">One</option>
+    <br>
+    <label for="price">Choose your desired price range</label>
+      <select id="price" class="form-select" aria-label="Default select example">
+        <option value="1" selected>One</option>
         <option value="2">Two</option>
         <option value="3">Three</option>
     </select>
-
-      <select class="form-select" aria-label="Default select example">
-        <option selected>Choose your marketcap range</option>
-        <option value="1">One</option>
+    <br>
+      <label for="volume">Choose your volume range</label>
+      <select id="volume" class="form-select" aria-label="Default select example">
+        <option value ="1" selected>One</option>
         <option value="2">Two</option>
         <option value="3">Three</option>
     </select>
@@ -91,7 +84,7 @@
    -->
    <br>
     <div id="data-table">hello</div>
-   
+   <br>
     
     <!-- linking to bootsraps, JQUERY & javascript --> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
