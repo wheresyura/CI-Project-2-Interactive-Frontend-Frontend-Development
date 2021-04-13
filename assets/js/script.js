@@ -24,7 +24,9 @@ function processRequest(exch, url){
             coins[exch] = coins[exch].concat(JSON.parse(this.responseText).tickers);
 
             sessionStorage.setItem('coins', JSON.stringify(coins));
-            //arrivedData();
+
+            filterData();
+
         }
     };
 
@@ -72,6 +74,7 @@ function filterUSDT(obj) {
 // note
 
 function refreshTickers(){
+    console.log('requesting data');
     for (const exch in coins) {
         getData2(exch);
     }
@@ -89,12 +92,13 @@ function filterData() {
  
     $('#coins-table').DataTable({ responsive: true });
 
+    
+
 };
 
 window.onload = function(e) {
     let saved = sessionStorage.getItem('coins');
     if (saved == null) {
-        console.log('requesting data');
         refreshTickers();
     }
     else {
@@ -102,49 +106,60 @@ window.onload = function(e) {
         coins = JSON.parse(saved);
     }
     filterData();
+// this was how we called the bellow
+    // this.test1();
 
 };
 
-
+// function test1(){
+//     console.log( 'test1: ' + coins['binance'][1].last);
+// }
 //
 
 function refreshData() {
-    //document.getElementById('refresh').onclick = function() {
-    let saved = sessionStorage.getItem('coins');
-    if (saved !== null) {
-        console.log('requesting data');
-        refreshTickers();
-    }
-    filterData();
+    refreshTickers();
+
+
+    // //document.getElementById('refresh').onclick = function() {
+    // let saved = sessionStorage.getItem('coins');
+    // if (saved !== null) {
+    //     console.log('requesting data');
+    //     refreshTickers();
+    // }
+    // filterData();
 
 //};
 };
 
-console.log(coins['binance'].last)
-console.log(filtered)
+
+// setTimeout(()=> {
+//     console.log(coins['binance'][10].last);
+//     console.log(filtered[10]);
+// }, 3000);
 
 //
-
-const ctx = document.getElementById('chart').getContext('2d');
-const xlabels = [1,2,3,4];
-const ylabels = [];
-const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: xlabels,
-        datasets: [{
-            label: 'Price of Crypto Currencies',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-  
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
- 
-            ],
-            borderWidth: 1
-        }]
-    },
-});
-
+function displayChart() {
+    const ctx = document.getElementById('chart').getContext('2d');
+    const xlabels = ['bitcoin', 'ethereum', 'ripple', 'tezzos'];
+    const ylabels = [];
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: xlabels,
+            datasets: [{
+                label: 'Price of Crypto Currencies',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+    
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+    
+                ],
+                borderWidth: 1
+            }]
+        },
+    });
+};
+//xlabels.push(coins['exch'].base)
