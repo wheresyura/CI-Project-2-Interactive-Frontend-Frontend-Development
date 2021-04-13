@@ -2,6 +2,7 @@
 const exchURL = "https://api.coingecko.com/api/v3/exchanges/";
 let coins = { binance: [], gdax: [], kraken: [], hotbit: [] };
 let filtered = [];
+let myChart = null;
 
 
 //looping through all of the pages code to show information, (hardcoded)
@@ -92,7 +93,7 @@ function filterData() {
  
     $('#coins-table').DataTable({ responsive: true });
 
-    
+    displayChart();
 
 };
 
@@ -139,16 +140,24 @@ function refreshData() {
 
 //
 function displayChart() {
+    console.log(filtered.length);
+    if (myChart!==null) {
+        myChart.destroy();
+    }
+    let exchange = document.getElementById('exchange').value;
     const ctx = document.getElementById('chart').getContext('2d');
-    const xlabels = ['bitcoin', 'ethereum', 'ripple', 'tezzos'];
-    const ylabels = [];
-    const myChart = new Chart(ctx, {
+    const xlabels = filtered.flatMap(x=>x.base);
+    const ylabels = filtered.flatMap(x=>x.last);
+
+  
+
+    myChart = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: xlabels,
             datasets: [{
-                label: 'Price of Crypto Currencies',
-                data: [12, 19, 3, 5, 2, 3],
+                label: `Price of Crypto Currencies on ${exchange}`,
+                data: ylabels,
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
     
@@ -160,6 +169,13 @@ function displayChart() {
                 borderWidth: 1
             }]
         },
+        options: {
+            scales: {
+                y: {
+                    max: 3000
+                }
+            }
+        }
     });
 };
 //xlabels.push(coins['exch'].base)
