@@ -24,7 +24,7 @@ function processRequest(exch, url){
             coins[exch] = coins[exch].concat(JSON.parse(this.responseText).tickers);
 
             sessionStorage.setItem('coins', JSON.stringify(coins));
-            arrivedData();
+            //arrivedData();
         }
     };
 
@@ -45,7 +45,7 @@ function displayFilteredData(exch) {
     }
     //console.log(result); 
     let el = document.getElementById('data-table');
-    el.innerHTML = ` <div class="container"><table class='table table-dark table-striped table-bordered nowrap' id='coins-table'>${result}</tbody></table></div>`;
+    el.innerHTML = ` <div class="container"> <button type="button" id="refresh" class="btn btn-light" onclick="refreshData()">Refresh <i class="fas fa-redo"></i></button><br><table class='table table-light table-striped table-bordered nowrap' id='coins-table'>${result}</tbody></table></div>`;
 }
 
 //Filter 
@@ -106,5 +106,45 @@ window.onload = function(e) {
 };
 
 
+//
 
+function refreshData() {
+    //document.getElementById('refresh').onclick = function() {
+    let saved = sessionStorage.getItem('coins');
+    if (saved !== null) {
+        console.log('requesting data');
+        refreshTickers();
+    }
+    filterData();
+
+//};
+};
+
+console.log(coins['binance'].last)
+console.log(filtered)
+
+//
+
+const ctx = document.getElementById('chart').getContext('2d');
+const xlabels = [1,2,3,4];
+const ylabels = [];
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: xlabels,
+        datasets: [{
+            label: 'Price of Crypto Currencies',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+  
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+ 
+            ],
+            borderWidth: 1
+        }]
+    },
+});
 
