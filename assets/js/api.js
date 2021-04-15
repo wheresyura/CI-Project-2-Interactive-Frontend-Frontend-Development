@@ -1,5 +1,5 @@
-//looping through all of the pages code to show information, (hardcoded by contant)
-function getData2(exch) {
+//looping through the api pages for a specific exchange to get information, (hardcoded by constant)
+function getSingleExchangeData(exch) {
     //empty arrays
     coins[exch] = [];
     filtered = [];
