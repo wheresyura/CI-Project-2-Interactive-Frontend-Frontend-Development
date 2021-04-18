@@ -52,6 +52,10 @@ function filterData() {
 
     $('#coins-table').DataTable({ responsive: true });
     displayChart();
+
+    displayPieChart();
 };
+
+
 
 //

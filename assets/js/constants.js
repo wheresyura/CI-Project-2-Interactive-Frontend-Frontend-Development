@@ -6,3 +6,4 @@ let coins = { binance: [], gdax: [], kraken: [], hotbit: [] };
 let filtered = [];
 let myChart = null;
 let moreCoinsData = [];
+let pieChart = null;

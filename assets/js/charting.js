@@ -17,7 +17,6 @@ function displayFilteredData(exch) {
 
 // drawing of a chart with our filtered data
 function displayChart() {
-    console.log(filtered.length);
     if (myChart!==null) {
         myChart.destroy();
     }
@@ -56,4 +55,48 @@ function displayChart() {
 //xlabels.push(coins['exch'].base)
 
 
+function displayPieChart() {
+    if (pieChart!==null) {
+        pieChart.destroy();
+    }
+    let exchange = document.getElementById('exchange').value;
+    const ctx = document.getElementById('pieChart').getContext('2d');
+
+    const cryptoNames = []; // coins[exchange].map(x=>x.base.toLowerCase());
+    const marketCaps = [];
+    for (const i in moreCoinsData) {
+        let code = moreCoinsData[i].symbol.toUpperCase();
+        let foundForExch = coins[exchange].find(x=>x.base === code);
+        if ( foundForExch !== undefined) {
+            cryptoNames.push(code);
+            marketCaps.push( moreCoinsData[i].market_cap);
+        }
+    }
+
+
+    const data = {
+        labels: cryptoNames,
+        datasets: [{
+            label: 'Marketcaps on ' + exchange,
+            data: marketCaps,
+            backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+            ],
+            hoverOffset: 4
+        }]
+    };
+
+    pieChart = new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: {
+            plugins: {
+                title: { text: 'Marketcaps on ' + exchange},
+                legend: { display: false }
+            }
+        }
+    });
+};
 
