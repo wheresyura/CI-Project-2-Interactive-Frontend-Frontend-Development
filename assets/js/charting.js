@@ -1,10 +1,13 @@
 // the function for displaying our data in a html table
 // let displayFilteredData = function () {} // same as below
 function displayFilteredData(exch) {
-    let result = '<thead><tr><th>Exchange</th><th>Base</th><th>Target</th><th>Last</th><th>Volume</th><th>Volume*Price</th></tr></thead><tbody>';
+    let result = '<thead><tr><th>Exchange</th><th>Base</th><th>Target</th><th>Last</th><th>Volume</th><th>Volume*Price</th><th>Market Cap</th></tr></thead><tbody>';
     for (const i in filtered) {
         // K - because we made the data into an array rather then a dictionary earlier we removed .tickers (which would have given us this array)
-            result += `<tr><td>${exch}</td> <td>${filtered[i].base}</td> <td>${filtered[i].target}</td><td>${filtered[i].last}</td><td>${filtered[i].volume}</td><td>${filtered[i].volume*filtered[i].last}</td></tr>`;
+            let coinInfo = moreCoinsData.find(item => item.symbol.toUpperCase() ===     filtered[i].base);
+            let market_cap = coinInfo === undefined ? 0 : coinInfo.market_cap;
+            
+            result += `<tr><td>${exch}</td> <td>${filtered[i].base}</td> <td>${filtered[i].target}</td><td>${filtered[i].last}</td><td>${filtered[i].volume}</td><td>${filtered[i].volume*filtered[i].last}</td><td>${market_cap}</td></tr>`;
             //result = result +  // the same
     }
     //console.log(result); 
