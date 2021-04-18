@@ -9,7 +9,8 @@ window.onload = function(e) {
     else {
         console.log('using saved data');
         coins = JSON.parse(saved);
+        moreCoinsData = JSON.parse(sessionStorage.getItem('moreCoinsData'));
     }
-    // run filterd data functio
+    // run filterd data function
     filterData();
 };

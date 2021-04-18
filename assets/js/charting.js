@@ -9,7 +9,7 @@ function displayFilteredData(exch) {
     }
     //console.log(result); 
     let el = document.getElementById('data-table');
-    el.innerHTML = ` <div class="container"> <button type="button" id="refresh" class="btn btn-light" onclick="refreshData()">Refresh <i class="fas fa-redo"></i></button><br><table class='table table-light table-striped table-bordered nowrap' id='coins-table'>${result}</tbody></table></div>`;
+    el.innerHTML = ` <div class="container"> <button type="button" id="refresh" class="btn btn-light" onclick="refreshTickers()">Refresh <i class="fas fa-redo"></i></button><br><table class='table table-light table-striped table-bordered nowrap' id='coins-table'>${result}</tbody></table></div>`;
 }
 
 // drawing of a chart with our filtered data
@@ -51,3 +51,6 @@ function displayChart() {
     });
 };
 //xlabels.push(coins['exch'].base)
+
+
+

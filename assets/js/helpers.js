@@ -5,7 +5,9 @@ function refreshTickers(){
     for (const exch in coins) {
         getSingleExchangeData(exch);
     }
+    processRequestSecondEndPoint();
 }
+
 
 // filters the data based on conditions of selection
 function filterData() {
@@ -17,8 +19,12 @@ function filterData() {
     let minPrice = priceRange[0] === "" ? 0 : Number(priceRange[0]);
     let maxPrice = priceRange[1] === "" ? Number.MAX_VALUE : Number(priceRange[1]);
 
-
     filtered = coins[exchange].filter(ticker => ticker.target === currency && ticker.last >= minPrice && ticker.last <= maxPrice);
+
+    // for (let i = 0; i < filtered.length; i++) {
+    //     filtered[i]['marketCap'] = i;
+        
+    // }
 
     displayFilteredData(exchange);
 
@@ -27,6 +33,3 @@ function filterData() {
 };
 
 //
-function refreshData() {
-    refreshTickers();
-};
