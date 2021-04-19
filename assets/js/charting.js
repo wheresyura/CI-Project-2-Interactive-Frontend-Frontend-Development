@@ -1,12 +1,11 @@
-// the function for displaying our data in a html table
-// let displayFilteredData = function () {} // same as below
+/* the function for displaying our data in a html table*/
 function displayFilteredData(exch) {
   let result = '<thead><tr><th>Exchange</th><th>Base</th><th>Target</th><th>Last</th><th>Volume</th><th>Volume*Price</th><th>Market Cap</th></tr></thead><tbody>';
   for (const i in filtered) {
-    // K - because we made the data into an array rather then a dictionary earlier we removed .tickers (which would have given us this array)
+    // we match moreCoinsData to specific coins in our filtered data
     let coinInfo = moreCoinsData.find(item => item.symbol.toUpperCase() === filtered[i].base);
     let market_cap = coinInfo === undefined ? 0 : coinInfo.market_cap;
-
+    // adding to this result through a loop to display as html table
     result += `<tr>
                             <td>${exch}</td> 
                             <td>${filtered[i].base}</td> 
@@ -16,9 +15,7 @@ function displayFilteredData(exch) {
                             <td>${filtered[i].volume*filtered[i].last}</td>
                             <td>${market_cap}</td>
                         </tr>`;
-    //result = result +  // the same
   }
-  //console.log(result); 
   let el = document.getElementById('data-table');
   el.innerHTML = `<div class="container"> 
                         <button type="button" id="refresh" class="btn btn-light" onclick="refreshTickers()">Refresh <i class="fas fa-redo"></i></button>
@@ -28,16 +25,19 @@ function displayFilteredData(exch) {
                     </div>`;
 }
 
-// drawing of a chart with our filtered data
+/* displaying a chart with our filtered data*/
 function displayChart() {
   if (myChart !== null) {
+      // destroying so can use again for new request
     myChart.destroy();
   }
   let exchange = document.getElementById('exchange').value;
   const ctx = document.getElementById('chart').getContext('2d');
+  // new arrays of just bases (x), and last(prices)(y)
   const xlabels = filtered.flatMap(x => x.base);
   const ylabels = filtered.flatMap(x => x.last);
 
+  // followed chart.js example
   myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -66,6 +66,7 @@ function displayChart() {
   });
 };
 
+/*displaying a chart with our filtered data*/
 function displayPieChart() {
   if (pieChart !== null) {
     pieChart.destroy();
@@ -73,9 +74,10 @@ function displayPieChart() {
   let exchange = document.getElementById('exchange').value;
   const ctx = document.getElementById('pieChart').getContext('2d');
 
-  const cryptoNames = []; // coins[exchange].map(x=>x.base.toLowerCase());
+  const cryptoNames = []; 
   const marketCaps = [];
   for (const i in moreCoinsData) {
+      // generating the x and y values for pie chart
     let code = moreCoinsData[i].symbol.toUpperCase();
     let foundForExch = coins[exchange].find(x => x.base === code);
     if (foundForExch !== undefined) {

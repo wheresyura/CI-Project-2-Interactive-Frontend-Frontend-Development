@@ -1,7 +1,8 @@
-//this is the start of the function when onload event happens, other functions are called
+/*this is the start of the website logic when onload event happens, other functions are called
+*/
 window.onload = function(e) {
   let saved = sessionStorage.getItem('coins');
-  // refresh tickers if not saved
+  // refresh tickers (download to a session storage) if not saved
   if (saved == null) {
     refreshTickers();
   }
@@ -11,6 +12,6 @@ window.onload = function(e) {
     coins = JSON.parse(saved);
     moreCoinsData = JSON.parse(sessionStorage.getItem('moreCoinsData'));
   }
-  // run filterd data function
+  // run filterd data function (displays coins based on choosen filters)
   filterData();
 };

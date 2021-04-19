@@ -1,4 +1,4 @@
-//created a constant with the api URL and variables with desired exchanges
+//created a constant with the api URL and page numbers and variables with desired exchanges
 const exchURL = "https://api.coingecko.com/api/v3/exchanges/";
 const pageNumber = 3;
 
