@@ -7,12 +7,25 @@ function displayFilteredData(exch) {
             let coinInfo = moreCoinsData.find(item => item.symbol.toUpperCase() ===     filtered[i].base);
             let market_cap = coinInfo === undefined ? 0 : coinInfo.market_cap;
             
-            result += `<tr><td>${exch}</td> <td>${filtered[i].base}</td> <td>${filtered[i].target}</td><td>${filtered[i].last}</td><td>${filtered[i].volume}</td><td>${filtered[i].volume*filtered[i].last}</td><td>${market_cap}</td></tr>`;
+            result += `<tr>
+                            <td>${exch}</td> 
+                            <td>${filtered[i].base}</td> 
+                            <td>${filtered[i].target}</td>
+                            <td>${filtered[i].last}</td>
+                            <td>${filtered[i].volume}</td>
+                            <td>${filtered[i].volume*filtered[i].last}</td>
+                            <td>${market_cap}</td>
+                        </tr>`;
             //result = result +  // the same
     }
     //console.log(result); 
     let el = document.getElementById('data-table');
-    el.innerHTML = ` <div class="container"> <button type="button" id="refresh" class="btn btn-light" onclick="refreshTickers()">Refresh <i class="fas fa-redo"></i></button><br><table class='table table-light table-striped table-bordered nowrap' id='coins-table'>${result}</tbody></table></div>`;
+    el.innerHTML = `<div class="container"> 
+                        <button type="button" id="refresh" class="btn btn-light" onclick="refreshTickers()">Refresh <i class="fas fa-redo"></i></button>
+                        <br>
+                        <table class='table table-light table-striped table-bordered nowrap' id='coins-table'>${result}</tbody>
+                        </table>
+                    </div>`;
 }
 
 // drawing of a chart with our filtered data
