@@ -59,7 +59,7 @@ function displayChart() {
         options: {
             scales: {
                 y: {
-                    max: 3000
+                    suggestedMax: 1
                 }
             }
         }
