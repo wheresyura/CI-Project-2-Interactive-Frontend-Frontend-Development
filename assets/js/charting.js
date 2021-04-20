@@ -1,6 +1,6 @@
 /* the function for displaying our data in a html table*/
 function displayFilteredData(exch) {
-  let result = '<thead><tr><th>Exchange</th><th>Base</th><th>Target</th><th>Last</th><th>Volume</th><th>Volume*Price</th><th>Market Cap</th></tr></thead><tbody>';
+  let result = '<thead><tr><th>Exchange</th><th>Base</th><th>Target</th><th>Last Price</th><th>Volume</th><th>Volume*Price</th><th>Market Cap</th></tr></thead><tbody>';
   for (const i in filtered) {
     // we match moreCoinsData to specific coins in our filtered data
     let coinInfo = moreCoinsData.find(item => item.symbol.toUpperCase() === filtered[i].base);
