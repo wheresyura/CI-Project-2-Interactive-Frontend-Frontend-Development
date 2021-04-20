@@ -264,28 +264,28 @@ Click [Here](https://help.github.com/en/github/creating-cloning-and-archiving-re
 ### Extra Resources Used
  
 #### Callback, async
-https://www.youtube.com/watch?v=_AyFP5s69N4&t=3s
-https://www.youtube.com/watch?v=568g8hxJJp4&t=83s
-https://www.youtube.com/watch?v=uPCxgnLOuiQ
-https://www.youtube.com/watch?v=pTbSfCT42_M&t=430s
+- https://www.youtube.com/watch?v=_AyFP5s69N4&t=3s
+- https://www.youtube.com/watch?v=568g8hxJJp4&t=83s
+- https://www.youtube.com/watch?v=uPCxgnLOuiQ
+- https://www.youtube.com/watch?v=pTbSfCT42_M&t=430s
  
 #### Arrays, Dictionaries
-https://www.youtube.com/watch?v=oigfaZ5ApsM
-https://www.youtube.com/watch?v=VIQoUghHSxU
-https://www.youtube.com/watch?v=G3BS3sh3D8Q
-https://www.youtube.com/watch?v=EnYlhbpzhU4
-https://www.youtube.com/watch?v=4_iT6EGkQfk&t=18s
-https://www.youtube.com/watch?v=A0g7sga28Zg
-https://www.youtube.com/watch?v=qmnH5MT_luk&t=445s
-https://www.youtube.com/watch?v=VmicKaGcs5g
-https://www.youtube.com/watch?v=_ApRMRGI-6g
+- https://www.youtube.com/watch?v=oigfaZ5ApsM
+- https://www.youtube.com/watch?v=VIQoUghHSxU
+- https://www.youtube.com/watch?v=G3BS3sh3D8Q
+- https://www.youtube.com/watch?v=EnYlhbpzhU4
+- https://www.youtube.com/watch?v=4_iT6EGkQfk&t=18s
+- https://www.youtube.com/watch?v=A0g7sga28Zg
+- https://www.youtube.com/watch?v=qmnH5MT_luk&t=445s
+- https://www.youtube.com/watch?v=VmicKaGcs5g
+- https://www.youtube.com/watch?v=_ApRMRGI-6g
  
 #### Charts & DataTable & API
-https://www.youtube.com/watch?v=024yLQ1K1Ws&t=151s
-https://www.youtube.com/watch?v=sE08f4iuOhA&t=9s
-https://www.youtube.com/watch?v=5-ptp9tRApM&t=598s
-https://www.youtube.com/watch?v=EmvIYSCDLts
-https://www.youtube.com/watch?v=7Gdok1BPECw&t=197s
+- https://www.youtube.com/watch?v=024yLQ1K1Ws&t=151s
+- https://www.youtube.com/watch?v=sE08f4iuOhA&t=9s
+- https://www.youtube.com/watch?v=5-ptp9tRApM&t=598s
+- https://www.youtube.com/watch?v=EmvIYSCDLts
+- https://www.youtube.com/watch?v=7Gdok1BPECw&t=197s
  
  
 ### Acknowledgements
